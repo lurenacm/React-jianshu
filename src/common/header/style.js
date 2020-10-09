@@ -17,10 +17,11 @@ export const Logo = styled.a`
     background-size: contain;
 `
 export const HeaderContainer = styled.div`
-    with: 200px;
-    margin: 0px 200px;
+    // width: 200px;
+    margin: 0px 350px;
 `
 export const HeaderItem = styled.div`
+    position: relative;
     display: inline;
     height: 56px;
     line-height: 56px;
@@ -35,6 +36,13 @@ export const HeaderItem = styled.div`
     }
     &.active {
         color:  #ea6f5a;
+    }
+    & img {
+        position: absolute;
+        top: 19px;
+        width: 22px;
+        height: 22px;
+        color: #eee;
     }
 `
 export const Search = styled.input.attrs({
@@ -62,7 +70,7 @@ export const Button = styled.div`
     width: 120px;
     height: 56px;
     line-height: 56px;
-    margin: 0px 10px;
+    margin: 0px 50px 0px 30px;
     display: inline;
     border-radius: 17px ;
     border: 1px solid #ec6149;
@@ -72,6 +80,17 @@ export const Button = styled.div`
         padding: 6px 20px;
     }
     &.writer {
-        padding: 6px 20px;
+        position: relative;
+        padding: 6px 35px;
+        background: #ec7259;
+        color: white;
+        & img {
+            position: absolute;
+            top: 6px;
+            right: 73px;
+            margin-right: 5px;
+            width: 21px;
+            height: 21px;
+        }
     }
 `
