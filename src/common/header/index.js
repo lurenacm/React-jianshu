@@ -1,6 +1,8 @@
 import React, { Component } from "react"
+import { CSSTransition } from "react-transition-group";
 import AaPic from "../../statics/images/Aa.png";
 import peng from "../../statics/images/peng2.png";
+import iconSearch from "../../statics/images/search.png";
 
 import {
     HeaderWrapper,
@@ -9,14 +11,24 @@ import {
     HeaderItem,
     Search,
     Addition,
-    Button
+    Button,
+    SearchWrapper
 } from "./style"
 
 
 
 class Header extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            focus: false
+        }
+        this.focus = this.focus.bind(this)
+        this.blur = this.blur.bind(this)
+    }
+
     render() {
-        return ( 
+        return (
             <HeaderWrapper >
                 <Logo href="/"/>
                 <HeaderContainer>
@@ -27,7 +39,16 @@ class Header extends Component {
                         <img className="Aap" alt="" src= {AaPic}/>
                     </HeaderItem>
                 </HeaderContainer>
-                <Search></Search>
+                <CSSTransition
+                    in={this.state.focus}
+                    classNames="slid"
+                    timeout={200}
+                >
+                    <SearchWrapper>
+                        <Search className={this.state.focus ? "focus" : "" } onFocus={this.focus} onBlur={this.blur}></Search>
+                        <img className={this.state.focus ? "search iconSearch" : "" } alt="" src= {iconSearch}/>
+                    </SearchWrapper>
+                </CSSTransition>
                 <Addition>
                     <Button className="reg">注册</Button>
                     <Button className="writer">
@@ -37,6 +58,20 @@ class Header extends Component {
                 </Addition>
             </HeaderWrapper>
         )
+    }
+
+    focus() {
+        this.setState({
+            focus: true
+        })
+        console.log(this.state.focus)
+    }
+
+    blur() {
+        this.setState({
+            focus: false
+        })
+        console.log(this.state.focus)
     }
 }
 

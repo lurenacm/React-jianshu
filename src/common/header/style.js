@@ -18,6 +18,7 @@ export const Logo = styled.a`
 `
 export const HeaderContainer = styled.div`
     // width: 200px;
+    // position: absolute;
     margin: 0px 350px;
 `
 export const HeaderItem = styled.div`
@@ -45,6 +46,35 @@ export const HeaderItem = styled.div`
         color: #eee;
     }
 `
+export const SearchWrapper = styled.div`
+    float: left;
+    position: absolute;
+    top: 0px;
+    left: 34%;
+    width: 300px;
+    height: 58px;
+    .focus {
+        width: 350px;
+        background:  #eee;
+    }
+    & img {
+        position: absolute;
+        top: 9px;
+        left: 176px;
+        width: 18px;
+        height: 18px;
+        padding: 10px;
+        padding-left: 4px;
+        &.iconSearch {
+            position: absolute;
+            left: 366px;
+            padding-left: 10px;
+            border-radius: 50%;
+            background: #b59e9e;
+        }
+    }
+`
+
 export const Search = styled.input.attrs({
     placeholder: '搜索'
 })`
@@ -58,7 +88,9 @@ export const Search = styled.input.attrs({
     border: 1px solid #eee;
     padding: 0 30px 0 20px;
     margin-top: 9px;
+
 `
+
 export const Addition = styled.div`
     position: absolute;
     top: 0px;
@@ -68,7 +100,7 @@ export const Addition = styled.div`
 
 export const Button = styled.div`
     width: 120px;
-    height: 56px;
+    height: 60px;
     line-height: 56px;
     margin: 0px 50px 0px 30px;
     display: inline;
