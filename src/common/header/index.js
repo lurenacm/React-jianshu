@@ -4,7 +4,7 @@ import { CSSTransition } from "react-transition-group";
 import AaPic from "../../statics/images/Aa.png";
 import peng from "../../statics/images/peng2.png";
 import iconSearch from "../../statics/images/search.png";
-import * as actionCreator from './store/actionCreators'
+import { actionCreator } from './store/index'
 
 import {
     HeaderWrapper,
