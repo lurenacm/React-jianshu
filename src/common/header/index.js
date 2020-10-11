@@ -4,6 +4,7 @@ import { CSSTransition } from "react-transition-group";
 import AaPic from "../../statics/images/Aa.png";
 import peng from "../../statics/images/peng2.png";
 import iconSearch from "../../statics/images/search.png";
+import * as actionCreator from './store/actionCreators'
 
 import {
     HeaderWrapper,
@@ -58,19 +59,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         focused() {
-            const action = {
-                type: 'focus',
-                value: true
-            }
-            dispatch(action)
+            dispatch(actionCreator.focused)
         },
-
         blur() {
-            const action = {
-                type: 'blur',
-                value: false
-            }
-            dispatch(action)
+            dispatch(actionCreator.blur)
         }
     }
 }
