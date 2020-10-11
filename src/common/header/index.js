@@ -1,4 +1,5 @@
-import React, { Component } from "react"
+import React  from "react"
+import { connect } from 'react-redux'
 import { CSSTransition } from "react-transition-group";
 import AaPic from "../../statics/images/Aa.png";
 import peng from "../../statics/images/peng2.png";
@@ -15,64 +16,63 @@ import {
     SearchWrapper
 } from "./style"
 
-
-
-class Header extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            focus: false
-        }
-        this.focus = this.focus.bind(this)
-        this.blur = this.blur.bind(this)
-    }
-
-    render() {
+const Header = (props) => {
         return (
             <HeaderWrapper >
-                <Logo href="/"/>
-                <HeaderContainer>
-                    <HeaderItem className="left active">首页</HeaderItem>
-                    <HeaderItem className="left">下载App</HeaderItem>
-                    <HeaderItem className="right">登陆</HeaderItem>
-                    <HeaderItem className="right">
-                        <img className="Aap" alt="" src= {AaPic}/>
-                    </HeaderItem>
-                </HeaderContainer>
+            <Logo href="/"/>
+            <HeaderContainer>
+                <HeaderItem className="left active">首页</HeaderItem>
+                <HeaderItem className="left">下载App</HeaderItem>
+                <HeaderItem className="right">登陆</HeaderItem>
+                <HeaderItem className="right">
+                    <img className="Aap" alt="" src= {AaPic}/>
+                </HeaderItem>
+            </HeaderContainer>
+            <SearchWrapper>
                 <CSSTransition
-                    in={this.state.focus}
+                    in={ props.focus }
                     classNames="slid"
                     timeout={200}
                 >
-                    <SearchWrapper>
-                        <Search className={this.state.focus ? "focus" : "" } onFocus={this.focus} onBlur={this.blur}></Search>
-                        <img className={this.state.focus ? "search iconSearch" : "" } alt="" src= {iconSearch}/>
-                    </SearchWrapper>
+                    <Search className={props.focus ? "focus" : "" } onFocus={props.focused} onBlur={props.blur}></Search>
                 </CSSTransition>
-                <Addition>
-                    <Button className="reg">注册</Button>
-                    <Button className="writer">
-                        <img className="peng" alt="" src= {peng}/>
-                        写文章
-                    </Button>
-                </Addition>
-            </HeaderWrapper>
+                <img className={props.focus ? "search iconSearch" : "" } alt="" src= {iconSearch}/>
+            </SearchWrapper>
+            <Addition>
+                <Button className="reg">注册</Button>
+                <Button className="writer">
+                    <img className="peng" alt="" src= {peng}/>
+                    写文章
+                </Button>
+            </Addition>
+        </HeaderWrapper>
         )
-    }
+}
 
-    focus() {
-        this.setState({
-            focus: true
-        })
-        console.log(this.state.focus)
-    }
-
-    blur() {
-        this.setState({
-            focus: false
-        })
-        console.log(this.state.focus)
+const mapStateToProps = (state) => {
+    return {
+        focus : state.focus
     }
 }
 
-export default Header
+const mapDispatchToProps = (dispatch) => {
+    return {
+        focused() {
+            const action = {
+                type: 'focus',
+                value: true
+            }
+            dispatch(action)
+        },
+
+        blur() {
+            const action = {
+                type: 'blur',
+                value: false
+            }
+            dispatch(action)
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (Header)

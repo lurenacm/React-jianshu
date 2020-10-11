@@ -53,8 +53,20 @@ export const SearchWrapper = styled.div`
     left: 34%;
     width: 300px;
     height: 58px;
+    .slid-enter {
+        transition: all .2s ease-out;
+    }
+    .slid-enter-active {
+        width: 290px;
+    }
+    .slid-exit {
+        transition: all .2s ease-out;
+    }
+    .slid-exit-active {
+        width: 160px;
+    }
     .focus {
-        width: 350px;
+        width: 290px;
         background:  #eee;
     }
     & img {
@@ -67,10 +79,15 @@ export const SearchWrapper = styled.div`
         padding-left: 4px;
         &.iconSearch {
             position: absolute;
-            left: 366px;
             padding-left: 10px;
             border-radius: 50%;
-            background: #b59e9e;
+            left: 306px;
+            &.search {
+                background: #777;
+                position: absolute;
+                padding-left: 10px;
+                border-radius: 50%;
+            }
         }
     }
 `
@@ -88,7 +105,13 @@ export const Search = styled.input.attrs({
     border: 1px solid #eee;
     padding: 0 30px 0 20px;
     margin-top: 9px;
-
+    .focus {
+        width: 290px;
+    }
+    &::placeholder {
+        color: #999;
+        font-size: 14px;
+	}
 `
 
 export const Addition = styled.div`
