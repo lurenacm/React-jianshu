@@ -14,8 +14,38 @@ import {
     Search,
     Addition,
     Button,
-    SearchWrapper
+    SearchWrapper,
+    SearchContainer,
+    SearchHeader,
+    SearchItem,
+    SearchItemContainer,
+    SearchHots,
+    SearchSwitch
 } from "./style"
+
+const showSearchTitle = () => {
+    return (
+        <SearchContainer>
+            <SearchHeader>
+                <SearchHots>
+                    热门搜索
+                </SearchHots>
+                <SearchSwitch>
+                    换一批
+                </SearchSwitch>
+            </SearchHeader>
+            <SearchItemContainer>
+                <SearchItem>vue vue</SearchItem>
+                <SearchItem>vue vue</SearchItem>
+                <SearchItem>vue vue </SearchItem>
+                <SearchItem>vue vue</SearchItem>
+                <SearchItem>vue vue vue </SearchItem>
+                <SearchItem>vue vue vue</SearchItem>
+                <SearchItem>vue vue vue</SearchItem>
+            </SearchItemContainer>
+        </SearchContainer>
+    )
+}
 
 const Header = (props) => {
         return (
@@ -38,6 +68,10 @@ const Header = (props) => {
                     <Search className={props.focus ? "focus" : "" } onFocus={props.focused} onBlur={props.blur}></Search>
                 </CSSTransition>
                 <img className={props.focus ? "search iconSearch" : "" } alt="" src= {iconSearch}/>
+                {
+                    // showSearchTitle(),
+                    props.focus ? showSearchTitle() : ''
+                }
             </SearchWrapper>
             <Addition>
                 <Button className="reg">注册</Button>
@@ -52,7 +86,8 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        focus : state.header.get('focus')
+        focus : state.getIn(['header', 'focus']) //表示获取state的header下面的focus  等价与 state.get('header').get('focus')
+        // state.get('header').get('focus') // 统一将reducer返回的 state也转化为immutable 对象。state.header.get('focus')中
     }
 }
 

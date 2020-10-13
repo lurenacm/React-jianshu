@@ -91,6 +91,43 @@ export const SearchWrapper = styled.div`
         }
     }
 `
+export const SearchContainer = styled.div`
+    position: absolute;
+    top: 52px;
+    width: 250px;
+    margin-top: 9px;
+    padding: 20px;
+    box-shadow: 0 0 8px rgba(0,0,0,.2);
+    background: #fff;
+`
+export const SearchItem = styled.div`
+    display: inline-block;
+    border: 1px solid #f1c0c0;
+    border-radius: 3px;
+    margin: 3px 6px;
+    padding: 2px;
+    min-width: 30px;
+    color: #777;
+`
+export const SearchItemContainer = styled.div`
+    margin-top: 8px;
+`
+export const SearchHeader = styled.div`
+    padding: 10px;
+    margin-bottom: 18px;
+`
+export const SearchHots = styled.div`
+    display: inline-block;
+    font-weight: bold;
+    float: left;
+    color: #999;
+`
+
+export const SearchSwitch = styled.div`
+    display: inline-block;
+    float: right;
+    color: #999;
+`
 
 export const Search = styled.input.attrs({
     placeholder: '搜索'
