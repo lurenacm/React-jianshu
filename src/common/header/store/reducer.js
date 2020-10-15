@@ -8,18 +8,14 @@ const defaultState = fromJS({
 })
 
 export default (state = defaultState, action) => {
-    if (action.type === constants.SEARCHFOCUSED) {
-        // const newState = JSON.parse(JSON.stringify(state))
-        // newState.focus = action.value
-        return state.set('focus', true)   // 并没有改变state的数据
+    switch(action.type){
+        case constants.SEARCHFOCUSED:
+            return state.set('focus', true)
+        case constants.SEARCHBLURS:
+            return state.set('focus', false)
+        case constants.GETHEADERLIST:
+            return state.set('hotList', action.value)
+        default:
+            return state
     }
-    if (action.type === constants.SEARCHBLURS) {
-        // const newState = JSON.parse(JSON.stringify(state))
-        // newState.focus = action.value
-        return state.set('focus', false)
-    }
-    if(action.type === constants.GETHEADERLIST) {
-        return state.set('hotList', action.value)
-    }
-    return state
 }

@@ -25,6 +25,7 @@ import {
 class Header extends Component {
 
     showSearchTitle() {
+        const { hotList } = this.props
         return (
             <SearchContainer>
                 <SearchHeader>
@@ -37,7 +38,7 @@ class Header extends Component {
                 </SearchHeader>
                 <SearchItemContainer>
                     {
-                        this.props.hotList.map( item => {
+                        hotList.map( item => {
                             return <SearchItem key={item}>{item}</SearchItem>
                         })
                     }
@@ -47,6 +48,7 @@ class Header extends Component {
     }
 
     render () {
+        const { focus, focused, blur } = this.props
         return (
             <HeaderWrapper >
             <Logo href="/"/>
@@ -60,15 +62,15 @@ class Header extends Component {
             </HeaderContainer>
             <SearchWrapper>
                 <CSSTransition
-                    in={this.props.focus }
+                    in={focus }
                     classNames="slid"
                     timeout={200}
                 >
-                    <Search className={this.props.focus ? "focus" : "" } onFocus={this.props.focused} onBlur={this.props.blur}></Search>
+                    <Search className={focus ? "focus" : "" } onFocus={focused} onBlur={blur}></Search>
                 </CSSTransition>
-                <img className={this.props.focus ? "search iconSearch" : "" } alt="" src= {iconSearch}/>
+                <img className={focus ? "search iconSearch" : "" } alt="" src= {iconSearch}/>
                 {
-                    this.props.focus ? this.showSearchTitle() : ''
+                    focus ? this.showSearchTitle() : ''
                 }
             </SearchWrapper>
             <Addition>
