@@ -1,4 +1,4 @@
-import React  from "react"
+import React, { Component }  from "react"
 import { connect } from 'react-redux'
 import { CSSTransition } from "react-transition-group";
 import AaPic from "../../statics/images/Aa.png";
@@ -22,32 +22,31 @@ import {
     SearchHots,
     SearchSwitch
 } from "./style"
+class Header extends Component {
 
-const showSearchTitle = () => {
-    return (
-        <SearchContainer>
-            <SearchHeader>
-                <SearchHots>
-                    热门搜索
-                </SearchHots>
-                <SearchSwitch>
-                    换一批
-                </SearchSwitch>
-            </SearchHeader>
-            <SearchItemContainer>
-                <SearchItem>vue vue</SearchItem>
-                <SearchItem>vue vue</SearchItem>
-                <SearchItem>vue vue </SearchItem>
-                <SearchItem>vue vue</SearchItem>
-                <SearchItem>vue vue vue </SearchItem>
-                <SearchItem>vue vue vue</SearchItem>
-                <SearchItem>vue vue vue</SearchItem>
-            </SearchItemContainer>
-        </SearchContainer>
-    )
-}
+    showSearchTitle() {
+        return (
+            <SearchContainer>
+                <SearchHeader>
+                    <SearchHots>
+                        热门搜索
+                    </SearchHots>
+                    <SearchSwitch>
+                        换一批
+                    </SearchSwitch>
+                </SearchHeader>
+                <SearchItemContainer>
+                    {
+                        this.props.hotList.map( item => {
+                            return <SearchItem key={item}>{item}</SearchItem>
+                        })
+                    }
+                </SearchItemContainer>
+            </SearchContainer>
+        )
+    }
 
-const Header = (props) => {
+    render () {
         return (
             <HeaderWrapper >
             <Logo href="/"/>
@@ -61,16 +60,15 @@ const Header = (props) => {
             </HeaderContainer>
             <SearchWrapper>
                 <CSSTransition
-                    in={ props.focus }
+                    in={this.props.focus }
                     classNames="slid"
                     timeout={200}
                 >
-                    <Search className={props.focus ? "focus" : "" } onFocus={props.focused} onBlur={props.blur}></Search>
+                    <Search className={this.props.focus ? "focus" : "" } onFocus={this.props.focused} onBlur={this.props.blur}></Search>
                 </CSSTransition>
-                <img className={props.focus ? "search iconSearch" : "" } alt="" src= {iconSearch}/>
+                <img className={this.props.focus ? "search iconSearch" : "" } alt="" src= {iconSearch}/>
                 {
-                    // showSearchTitle(),
-                    props.focus ? showSearchTitle() : ''
+                    this.props.focus ? this.showSearchTitle() : ''
                 }
             </SearchWrapper>
             <Addition>
@@ -82,18 +80,21 @@ const Header = (props) => {
             </Addition>
         </HeaderWrapper>
         )
+    }
 }
 
 const mapStateToProps = (state) => {
     return {
-        focus : state.getIn(['header', 'focus']) //表示获取state的header下面的focus  等价与 state.get('header').get('focus')
+        focus : state.getIn(['header', 'focus']), //表示获取state的header下面的focus  等价与 state.get('header').get('focus')
         // state.get('header').get('focus') // 统一将reducer返回的 state也转化为immutable 对象。state.header.get('focus')中
+        hotList: state.getIn(['header', 'hotList'])
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         focused() {
+            dispatch(actionCreator.getHotList())
             dispatch(actionCreator.focused)
         },
         blur() {
