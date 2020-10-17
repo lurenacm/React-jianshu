@@ -61,7 +61,7 @@ class Header extends Component {
     }
 
     render () {
-        const { focus, focused, blur, showTitle } = this.props
+        const { focus, focused, blur, showTitle, hotList } = this.props
         return (
             <HeaderWrapper >
             <Logo href="/"/>
@@ -79,7 +79,7 @@ class Header extends Component {
                     classNames="slid"
                     timeout={200}
                 >
-                    <Search className={focus ? "focus" : "" } onFocus={focused} onBlur={blur}></Search>
+                    <Search className={focus ? "focus" : "" } onFocus={() => (focused(hotList))} onBlur={blur}></Search>
                 </CSSTransition>
                 <img className={focus ? "search iconSearch" : "" } alt="" src= {iconSearch}/>
                 {
@@ -112,8 +112,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        focused() {
-            dispatch(actionCreator.getHotList())
+        focused(hotList) {
+            // console.log(hotList)
+            (hotList.size === 0) && dispatch(actionCreator.getHotList())
+            // if(hotList.size === 0) {
+            //     dispatch(actionCreator.getHotList())    
+            // }
             dispatch(actionCreator.focused)
         },
         blur() {
@@ -126,7 +130,6 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(actionCreator.mouseleave)
         },
         switchHot(currPage, pageTotal) {
-            console.log(currPage)
             if(currPage <= pageTotal) {
                 dispatch(actionCreator.switchHotList(currPage+1))
             } else {

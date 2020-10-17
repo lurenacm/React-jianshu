@@ -23,7 +23,6 @@ export default (state = defaultState, action) => {
         case constants.MOUSELEAVE:
                 return state.set('showTitle', action.value)
         case constants.SWITCH_HOT_LIST:
-            console.log(action.value)
             return state.set('currPage', action.value)
         default:
             return state
