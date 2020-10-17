@@ -1,3 +1,6 @@
 export const SEARCHFOCUSED = 'header/SEARCHFOCUSED'
 export const SEARCHBLURS = 'header/SEARCHBLURS'
 export const GETHEADERLIST = 'header/GETHEADERLIST'
+export const MOUSEOVER = 'header/MOUSEOVER'
+export const MOUSELEAVE = 'header/MOUSELEAVE'
+export const SWITCH_HOT_LIST = 'header/SWITCH_HOT_LIST'
