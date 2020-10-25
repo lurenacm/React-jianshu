@@ -8,7 +8,10 @@ export const HomeContainer = styled.div`
 `
 export const TopicContainer = styled.div`
     width: 640px;
-    margin-top: 20px;
+    margin: 20px 0px;
+    display: block;
+    padding-bottom: 53px;
+    min-height: 274px;
     img{
         width: 625px;
         height: 270px;
@@ -19,7 +22,7 @@ export const TopicItem = styled.div`
     line-height: 36px;
     margin: 15px 15px 15px 0px;
     background: #fbf5f5;
-    display: inline-block;
+    display: block;
     font-size: 14px;
     border: solid 1px #ccc;
     color: #000;
@@ -34,4 +37,33 @@ export const TopicItem = styled.div`
         margin-left: 18px;
         padding: 0px 10px 0px 26px;
     }
+`
+export const ListWrapper = styled.div`
+    height: 136px;
+    width: 625px;
+`
+export const ListItem = styled.div`
+    height: 136px;
+    float: left;
+    border-bottom: solid 1px #f0f0f0;
+    img{
+        padding: 30px 0px 0px 9px;
+        width:150px;
+        height: 100px;
+        float: right;
+        border-radius: 4px;
+    }
+    h3 {
+        color: #969696;
+    }
+    p {
+        color: #999;
+        font-size: 13px;
+    }
+`
+export const RecommendsWrapper = styled.div`
+    float: right;
+    width: 280;
+    height: 228px;
+    background: #ccc;
 `

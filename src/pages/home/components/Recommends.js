@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
+import {
+    RecommendsWrapper
+} from '../style'
 
 class Recommends extends Component {
     render() {
         return (
-            <div>Recommends</div>
+            <div>
+                <RecommendsWrapper>
+                RecommendsWrapper
+                </RecommendsWrapper>
+            </div>
         )
     }
 }
