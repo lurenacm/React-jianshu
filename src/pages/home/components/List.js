@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
 import { ListWrapper, ListItem } from '../style'
+import { actionCreator } from '../store/index'
+
 
 class List extends Component {
     render() {
@@ -24,16 +25,7 @@ class List extends Component {
     }
 
     componentDidMount() {
-        this.getListData()
-    }
-
-    getListData() {
-        axios.get('/api/home.json').then((res) => {
-            const data = res.data.data
-            this.props.dispatchListData(data)
-        }).catch(e => {
-            console.log(e)
-        })
+        this.props.dispatchListData()
     }
 }
 
@@ -42,12 +34,8 @@ const mapState = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    dispatchListData(data) {
-        const action = {
-            type: 'get_list_data',
-            value: data
-        }
-        dispatch(action)
+    dispatchListData() {
+        dispatch(actionCreator.getListData())
     }
 })
 
