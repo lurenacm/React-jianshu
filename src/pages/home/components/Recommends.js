@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
-    RecommendsWrapper
+    RecommendsWrapper,
+    RecommendsItem
 } from '../style'
 
 class Recommends extends Component {
@@ -8,11 +10,19 @@ class Recommends extends Component {
         return (
             <div>
                 <RecommendsWrapper>
-                RecommendsWrapper
+                    {
+                        this.props.recommendList.map( item => (
+                            <RecommendsItem imgUrl={item.get('imgUrl')} key={item.get('id')} />
+                        ))
+                    }
                 </RecommendsWrapper>
             </div>
         )
     }
 }
 
-export default Recommends
+const mapState = (state) => ({
+    recommendList: state.getIn(['home', 'recommendList'])
+})
+
+export default connect(mapState, null) (Recommends)

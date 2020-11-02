@@ -4,7 +4,7 @@ export const HomeContainer = styled.div`
     width: 960px;
     margin: 0 auto;
     height: 200px;
-    background: red;
+    position: relative;
 `
 export const TopicContainer = styled.div`
     width: 640px;
@@ -63,7 +63,16 @@ export const ListItem = styled.div`
 `
 export const RecommendsWrapper = styled.div`
     float: right;
-    width: 280;
+    width: 280px;
     height: 228px;
-    background: #ccc;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+`
+export const RecommendsItem = styled.div`
+    width: 280px;
+    height: 50px;
+    background: url(${(prop) => prop.imgUrl});
+    background-size: contain;
+    margin: 5px 0px;
 `
