@@ -6,7 +6,8 @@ import * as constants from './constants'
 const defaultState = fromJS({
     topicList: [],
     articleList: [],
-    recommendList: []
+    recommendList: [],
+    nextPage: 1
 })
 
 export default (state = defaultState, action) => {
@@ -17,6 +18,13 @@ export default (state = defaultState, action) => {
                 articleList: fromJS(action.value.articleList),
                 recommendList: fromJS(action.value.recommendList)
             })
+        case constants.GET_MORE_LIST:
+            // console.log(action.list)
+            return state.merge({
+                articleList:  state.get('articleList').concat(action.list),
+                nextPage: state.get('nextPage') +1 
+            })
+            // state.set('articleList', state.get('articleList').concat(action.list))
         default:
             return state
     }

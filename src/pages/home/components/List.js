@@ -1,24 +1,25 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { ListWrapper, ListItem } from '../style'
+import { ListWrapper, ListItem, LoadMore } from '../style'
 import { actionCreator } from '../store/index'
 
 
 class List extends Component {
     render() {
-        const { articleList } = this.props
+        const { articleList, LoadMoreList, nextPage } = this.props
         return (
             <div>
                 <ListWrapper>
                     {
-                        articleList.map( item => (
-                            <ListItem key={item.get("id")}>
+                        articleList.map( (item, index) =>  (
+                            <ListItem key={index}>
                                 <img src={item.get("imgUrl")} alt="" />
                                 <h3>{item.get("title")}</h3>
                                 <p>{item.get("desc")}</p>
                             </ListItem>
                         ))
                     }
+                <LoadMore onClick={ () => {LoadMoreList(nextPage)}}>加载更多</LoadMore>
                 </ListWrapper>
             </div>
         )
@@ -30,12 +31,18 @@ class List extends Component {
 }
 
 const mapState = (state) => ({
-    articleList: state.getIn(['home', 'articleList'])
+    articleList: state.getIn(['home', 'articleList']),
+    nextPage: state.getIn(['home', 'nextPage'])
 })
 
 const mapDispatchToProps = (dispatch) => ({
     dispatchListData() {
         dispatch(actionCreator.getListData())
+    },
+
+    LoadMoreList(nextPage) {
+        dispatch(actionCreator.loadMoreData(nextPage))
+        // console.log('event')
     }
 })
 

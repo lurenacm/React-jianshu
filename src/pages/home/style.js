@@ -7,6 +7,7 @@ export const HomeContainer = styled.div`
     position: relative;
 `
 export const TopicContainer = styled.div`
+    cursor: pointer;
     width: 640px;
     margin: 20px 0px;
     display: block;
@@ -18,6 +19,7 @@ export const TopicContainer = styled.div`
     }
 `
 export const TopicItem = styled.div`
+    cursor: pointer;
     height: 36px;
     line-height: 36px;
     margin: 15px 15px 15px 0px;
@@ -39,10 +41,12 @@ export const TopicItem = styled.div`
     }
 `
 export const ListWrapper = styled.div`
+    cursor: pointer;
     height: 136px;
     width: 625px;
 `
 export const ListItem = styled.div`
+    cursor: pointer;
     height: 136px;
     float: left;
     border-bottom: solid 1px #f0f0f0;
@@ -75,4 +79,16 @@ export const RecommendsItem = styled.div`
     background: url(${(prop) => prop.imgUrl});
     background-size: contain;
     margin: 5px 0px;
+`
+export const LoadMore = styled.div`
+    float: left;
+    margin: 20px 0;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: #a5a5a5;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
 `
