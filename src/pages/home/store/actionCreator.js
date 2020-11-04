@@ -13,6 +13,7 @@ const getMoreList =(data, nextPage) => ({
     nextPage
 })
 
+
 // redux-thunk 中间件让返回的结果可以是一个函数，可以接受一个参数dispatch
 export const getListData = () => {
     return (dispatch) => {
@@ -36,3 +37,8 @@ export const loadMoreData = (nextPage) => {
         })
     }
 }
+
+export const  toggleShowScroll = (show) =>({
+    type: constants.TOGGLE_SHOW_SCROLL,
+    show
+})
