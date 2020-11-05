@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { ListWrapper, ListItem, LoadMore } from '../style'
 import { actionCreator } from '../store/index'
 
 
-class List extends Component {
+class List extends PureComponent {
     render() {
         const { articleList, LoadMoreList, nextPage } = this.props
         return (
@@ -12,11 +13,13 @@ class List extends Component {
                 <ListWrapper>
                     {
                         articleList.map( (item, index) =>  (
-                            <ListItem key={index}>
-                                <img src={item.get("imgUrl")} alt="" />
-                                <h3>{item.get("title")}</h3>
-                                <p>{item.get("desc")}</p>
-                            </ListItem>
+                        <Link to='../detail'  key={index}>
+                                <ListItem>
+                                    <img src={item.get("imgUrl")} alt="" />
+                                    <h3>{item.get("title")}</h3>
+                                    <p>{item.get("desc")}</p>
+                                </ListItem>
+                            </Link>
                         ))
                     }
                 <LoadMore onClick={ () => {LoadMoreList(nextPage)}}>加载更多</LoadMore>

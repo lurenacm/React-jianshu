@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import {
     RecommendsWrapper,
     RecommendsItem
 } from '../style'
 
-class Recommends extends Component {
+class Recommends extends PureComponent {
     render() {
         return (
             <div>
