@@ -7,9 +7,9 @@ const getDetailAction = (data)=> ({
 })
 
 
-export const getDetailList = () => {
+export const getDetailList = (id) => {
     return (dispatch) => {
-            axios.get("/api/detail.json").then( r => {
+            axios.get("/api/detail.json?id=" + id).then( r => {
                 const dataObj = r.data.data
                 return dispatch(getDetailAction(dataObj))
             }).catch(e => {

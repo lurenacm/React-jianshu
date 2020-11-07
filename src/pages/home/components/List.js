@@ -13,7 +13,7 @@ class List extends PureComponent {
                 <ListWrapper>
                     {
                         articleList.map( (item, index) =>  (
-                        <Link to='../detail'  key={index}>
+                        <Link to={'../detail/' + item.get("id")}  key={index}>
                                 <ListItem>
                                     <img src={item.get("imgUrl")} alt="" />
                                     <h3>{item.get("title")}</h3>
