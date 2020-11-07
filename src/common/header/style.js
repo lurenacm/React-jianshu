@@ -5,7 +5,7 @@ export const HeaderWrapper = styled.div`
     height: 56px;
     background: white;
     border-bottom: solid 1px #eee;
-    position: relative;
+    z-index: 10;
 `
 export const Logo = styled.a`
     width: 100px;
@@ -93,6 +93,7 @@ export const SearchWrapper = styled.div`
 `
 export const SearchContainer = styled.div`
     position: absolute;
+    z-index: 10;
     top: 52px;
     width: 250px;
     margin-top: 9px;
