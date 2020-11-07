@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { DetailWrapper, Header, Content } from './style'
+import * as actionCreator from './store/actionCreator'
 
 class Detail extends Component {
     render() {
@@ -9,10 +10,13 @@ class Detail extends Component {
                 <DetailWrapper>
                     <Header>{ this.props.title}</Header>
                     <Content dangerouslySetInnerHTML={{  __html: this.props.content }}  />  
-                    {/* dangerouslySetInnerHTML 双{{}} 包裹 */}
                 </DetailWrapper>
             </div>
         )
+    }
+
+    componentDidMount() {
+        this.props.getDetail()
     }
 }
 
@@ -21,4 +25,10 @@ const mapState = (state) => ({
     content: state.getIn(['detail', 'content'])
 })
 
-export default connect(mapState, null) (Detail)
+const mapDispatch = (dispatch) => ({
+    getDetail() {
+        dispatch( actionCreator.getDetailList())
+    }
+})
+
+export default connect(mapState, mapDispatch) (Detail)

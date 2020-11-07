@@ -32,11 +32,6 @@ class Home extends PureComponent {
         window.addEventListener('scroll', this.props.changeScrollTopShow)   // addEventListener 的type类型触发时，将执行第二个参数，listener函数
     }
 
-    changeScrollTopShow() {
-        const scrollTop = document.body.scrollTop+document.documentElement.scrollTop
-        console.log(scrollTop)
-    }
-
     backTop(e) {
         window.scroll(0,0)
     }
